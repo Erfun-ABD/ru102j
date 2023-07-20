@@ -42,6 +42,16 @@ public class RedisSchema {
                 String.valueOf(minuteBlock) + ":" +
                 String.valueOf(maxHits));
     }
+    
+    // limiter::[windowSize]:[name]:[maxHits]
+    // Redis type: sorted set
+    static String getRateLimiterSlidingKey(long windowSizeMS, String name,
+                                    long maxHits) {
+        return KeyHelper.getKey("limiter:" +
+                String.valueOf(windowSizeMS) + ":" +
+                name + ":" +
+                String.valueOf(maxHits));
+    }
 
     // sites:geo
     // Redis type: geo
