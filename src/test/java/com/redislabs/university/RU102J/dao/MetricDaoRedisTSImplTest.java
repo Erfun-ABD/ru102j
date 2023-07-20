@@ -23,7 +23,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
 
-@Ignore
+// @Ignore
 public class MetricDaoRedisTSImplTest {
 
     private ArrayList<MeterReading> readings;

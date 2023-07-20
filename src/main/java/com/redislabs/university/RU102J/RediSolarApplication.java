@@ -52,13 +52,13 @@ public class RediSolarApplication extends Application<RediSolarConfiguration> {
         // SiteResource siteResource =
         //         new SiteResource(new SiteDaoRedisImpl(jedisPool));
         environment.jersey().register(siteResource);
-        
 
+        
         // For RedisTimeSeries: replace the next lines with
         // MetricsResource metricsResource =
         //              new MetricsResource(new MetricDaoRedisTSImpl(jedisPool));
                 MetricsResource metricsResource =
-                        new MetricsResource(new MetricDaoRedisZsetImpl(jedisPool));
+                        new MetricsResource(new MetricDaoRedisTSImpl(jedisPool));
         environment.jersey().register(metricsResource);
 
         CapacityResource capacityResource =
@@ -67,7 +67,7 @@ public class RediSolarApplication extends Application<RediSolarConfiguration> {
 
         MeterReadingResource meterResource =
                 new MeterReadingResource(new SiteStatsDaoRedisImpl(jedisPool),
-                        new MetricDaoRedisZsetImpl(jedisPool),
+                        new MetricDaoRedisTSImpl(jedisPool),
                         // For RedisTimeSeries: new MetricDaoRedisTSImpl(jedisPool),
                         new CapacityDaoRedisImpl(jedisPool),
                         new FeedDaoRedisImpl(jedisPool));
